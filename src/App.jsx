@@ -11,11 +11,12 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path='/login' element={<Login/>}/>
-        <Route path="/library" element={<Library />} />
         
         {/* The Layout wraps all workspace pages */}
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
+         <Route path="library" element={<Library />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

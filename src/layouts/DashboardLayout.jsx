@@ -1,151 +1,152 @@
-import { ArrowRight, BookOpen, FileText, PenTool, Bookmark, ArrowUpRight, Lock } from 'lucide-react';
 
-export default function Dashboard() {
+import { useState } from "react";
+import {Bell, Menu, X,} from "lucide-react";
+import { NavLink, Outlet } from "react-router-dom";
+
+const links = [
+  { name: "Dashboard", path: "/dashboard" },
+  { name: "Library", path: "/dashboard/library" },
+  { name: "Study Area", path: "/dashboard/study-area" },
+  { name: "Summaries · Coming Soon", disabled: true },
+  { name: "Mock Exam · Coming Soon", disabled: true },
+  { name: "Marketplace · Coming Soon", disabled: true },
+  { name: "Become a Contributor", path: "/dashboard/contribute" },
+  { name: "Profile", path: "/dashboard/profile" },
+  { name: "Settings", path: "/dashboard/settings" },
+  { name: "Log Out", path: "/logout" },
+];
+
+export default function DashboardLayout() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div className="max-w-5xl mx-auto pb-12">
-      <p className="text-brand-teal font-bold text-[10px] uppercase tracking-widest mb-2">Monday, 28 October</p>
-      <div className="flex justify-between items-end mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Hey Adaeze, let's make progress.</h1>
-          <p className="text-gray-600 dark:text-gray-400 text-sm">Your next good study session is right here.</p>
-        </div>
-        <button className="flex items-center gap-2 border border-gray-300 dark:border-gray-700 text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-          <Bookmark className="w-4 h-4" />
-          My study area
-        </button>
-      </div>
-      
-      {/* Search Bar */}
-      <div className="relative mb-10">
-        <input 
-          type="text" 
-          placeholder="Search courses, topics or resources..." 
-          className="w-full bg-white dark:bg-[#111827] border border-gray-200 dark:border-gray-800 rounded-xl px-12 py-4 text-sm focus:outline-none focus:border-brand-teal transition-colors"
+    <div className="min-h-screen bg-[#F1F4F3] text-[#202D40]">
+
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black/40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
         />
-        <svg className="w-5 h-5 absolute left-4 top-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-      </div>
+      )}
 
-      {/* Hero Banner */}
-      <div className="bg-brand-teal rounded-2xl p-8 text-white mb-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div>
-          <p className="text-[10px] font-bold text-brand-lightTeal uppercase tracking-widest mb-4">A little progress goes a long way.</p>
-          <h2 className="text-3xl font-bold mb-1">Back to arrays,</h2>
-          <h2 className="text-3xl font-bold mb-4">on to the next idea.</h2>
-          <p className="text-sm text-teal-100 mb-6 font-medium">CSC 201 · Data Structures, made clear</p>
-          <button className="bg-white text-brand-dark px-5 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-gray-100 transition-colors">
-            <ArrowRight className="w-4 h-4" />
-            Continue reading
+      {/* Sidebar */}
+      <aside
+        className={`fixed left-0 top-0 z-40 flex h-screen w-[250px] flex-col border-r border-[#DFE7E7] bg-white px-5 py-7 transition-transform lg:translate-x-0 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="mb-8 flex items-center justify-between">
+          <NavLink to="/dashboard" className="flex items-center gap-2"
+            onClick={() => setSidebarOpen(false)}
+          >
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#206F7E] text-2xl font-bold text-white">
+              p.
+            </span>
+
+            <span className="text-2xl font-bold tracking-tight">
+              prepnivo
+            </span>
+          </NavLink>
+
+          <button
+            className="lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+            aria-label="Close menu"
+          >
+            <X size={20} />
           </button>
         </div>
-        <div className="bg-black/20 rounded-xl p-5 min-w-[200px] border border-white/10 text-right">
-           <div className="flex justify-between items-end mb-4">
-             <p className="text-xs text-brand-lightTeal font-medium">Your last page</p>
-             <p className="text-xl font-bold">12 / 42</p>
-           </div>
-           <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden mb-3">
-              <div className="w-[30%] h-full bg-brand-lightTeal rounded-full"></div>
-           </div>
-           <p className="text-[10px] text-teal-100/70 truncate text-left">Chapter 2 - Arrays & linked lists</p>
-        </div>
-      </div>
 
-      {/* Picked for your courses */}
-      <div className="flex justify-between items-center mb-6">
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white">Picked for your courses</h3>
-        <a href="#" className="text-sm font-medium text-brand-teal dark:text-brand-lightTeal hover:underline flex items-center gap-1">
-          View library <ArrowRight className="w-3 h-3" />
-        </a>
-      </div>
-      
-      {/* Cards Row (Placeholders - we will extract this into a component next) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
-        {/* Card 1 - Free */}
-        <div className="bg-[#EBF3F2] dark:bg-[#133A38] rounded-2xl p-6 flex flex-col border border-transparent hover:border-brand-teal/30 cursor-pointer transition-colors">
-          <div className="flex justify-between items-start mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">CSC 201</h2>
-            <span className="text-xs font-bold text-brand-teal dark:text-brand-lightTeal flex items-center gap-1">PDF <ArrowUpRight className="w-3 h-3" /></span>
-          </div>
-          <div className="mt-auto">
-            <p className="text-[10px] font-bold text-brand-teal dark:text-brand-lightTeal uppercase tracking-widest mb-2">Lecture Notes · Free</p>
-            <h4 className="font-bold text-gray-900 dark:text-white mb-1">Data Structures, made clear</h4>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">CSC 201 · 200 level · PDF</p>
-            <p className="text-xs text-gray-500">2024/2025 · 42 pages</p>
-          </div>
-        </div>
-        
-        {/* Card 2 - Free */}
-        <div className="bg-[#EBF3F2] dark:bg-[#133A38] rounded-2xl p-6 flex flex-col border border-transparent hover:border-brand-teal/30 cursor-pointer transition-colors">
-          <div className="flex justify-between items-start mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">CSC 203</h2>
-            <span className="text-xs font-bold text-brand-teal dark:text-brand-lightTeal flex items-center gap-1">PDF <ArrowUpRight className="w-3 h-3" /></span>
-          </div>
-          <div className="mt-auto">
-            <p className="text-[10px] font-bold text-brand-teal dark:text-brand-lightTeal uppercase tracking-widest mb-2">Lecture Notes · Free</p>
-            <h4 className="font-bold text-gray-900 dark:text-white mb-1">Object-Oriented Programming</h4>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">CSC 203 · 200 level · PDF</p>
-            <p className="text-xs text-gray-500">2024/2025 · 36 pages</p>
-          </div>
-        </div>
+        <nav className="flex flex-col gap-1">
+          {links.map((link) =>
+            link.disabled ? (
+              <span
+                key={link.name}
+                className="rounded-xl px-3 py-3 text-[13px] text-[#697F98] opacity-75"
+              >
+                {link.name}
+              </span>
+            ) : (
+              <NavLink
+                key={link.name}
+                to={link.path}
+                end={link.path === "/dashboard"}
+                onClick={() => setSidebarOpen(false)}
+                className={({ isActive }) =>
+                  `rounded-xl px-3 py-3 text-[13px] transition-colors ${
+                    isActive
+                      ? "bg-[#E7F3F1] font-medium text-[#526D87]"
+                      : "text-[#697F98] hover:bg-[#F1F4F3]"
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            )
+          )}
+        </nav>
 
-        {/* Card 3 - Premium */}
-        <div className="bg-[#FDF2F4] dark:bg-[#34242B] rounded-2xl p-6 flex flex-col border border-transparent hover:border-red-500/30 cursor-pointer transition-colors">
-          <div className="flex justify-between items-start mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">CSC 201</h2>
-            <span className="text-xs font-bold text-red-600 dark:text-red-400 flex items-center gap-1">PDF <ArrowUpRight className="w-3 h-3" /></span>
+        {/* Sidebar bottom */}
+        <div className="mt-auto pt-6">
+          <div className="rounded-2xl bg-[#E7F3F1] p-4">
+            <h3 className="text-sm font-bold">
+              Make room for more.
+            </h3>
+
+            <NavLink
+              to="/dashboard/premium"
+              className="mt-4 block rounded-xl bg-[#206F7E] px-4 py-3 text-center text-sm font-semibold text-white hover:bg-[#185966]"
+            >
+              Explore Premium
+            </NavLink>
           </div>
-          <div className="mt-auto">
-            <p className="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest mb-2 flex items-center gap-1">
-              <Lock className="w-3 h-3" /> Past Questions · Premium
+
+          <div className="mt-8 text-xs leading-relaxed text-[#697F98]">
+            <p>Adaeze Okafor</p>
+            <p>Free account</p>
+          </div>
+        </div>
+      </aside>
+
+      {/* Main workspace */}
+      <div className="min-h-screen lg:ml-[250px]">
+
+        {/* Top navigation */}
+        <header className="sticky top-0 z-20 flex h-[85px] items-center justify-between border-b border-[#DFE7E7] bg-white px-5 md:px-10">
+          <div className="flex items-center gap-4">
+            <button
+              className="lg:hidden"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu size={22} />
+            </button>
+
+            <p className="text-xs text-[#697F98]">
+              Workspace
+              <span className="mx-2">/</span>
+              <span className="text-[#202D40]">Dashboard</span>
             </p>
-            <h4 className="font-bold text-gray-900 dark:text-white mb-1">CSC 201 past questions & solutions</h4>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">CSC 201 · 200 level · PDF</p>
-            <p className="text-xs text-gray-500">2023/2024 · 28 pages · Preview only</p>
           </div>
-        </div>
-      </div>
 
-      {/* What are you working on? */}
-      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">What are you working on?</h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        {[
-          { icon: BookOpen, title: 'Lecture notes', desc: 'Build your understanding' },
-          { icon: FileText, title: 'Past questions', desc: 'Know the question style' },
-          { icon: PenTool, title: 'Practice problems', desc: 'Put concepts to work' },
-          { icon: Bookmark, title: 'Study guides', desc: 'Bring ideas together' }
-        ].map(btn => (
-          <button key={btn.title} className="bg-white dark:bg-[#111827] border border-gray-200 dark:border-gray-800 p-4 rounded-xl flex items-center gap-3 hover:border-brand-teal transition-colors text-left group">
-            <div className="text-gray-400 group-hover:text-brand-teal transition-colors">
-              <btn.icon className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-gray-900 dark:text-white">{btn.title}</p>
-              <p className="text-[10px] text-gray-500">{btn.desc}</p>
-            </div>
-          </button>
-        ))}
-      </div>
+          <div className="flex items-center gap-5">
+            <span className="rounded-full bg-[#E7F3F1] px-3 py-1 text-[10px] font-bold text-[#206F7E]">
+              UNILAG · 200 LEVEL
+            </span>
 
-      {/* Bottom Promo Blocks */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="bg-brand-teal/10 dark:bg-brand-teal/20 border border-brand-teal/20 rounded-2xl p-8">
-          <p className="text-[10px] font-bold text-brand-teal dark:text-brand-lightTeal uppercase tracking-widest mb-3">More room to learn</p>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Go beyond the Free collection.</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-sm">Premium resources and downloads. Proposed at ₦1,200/month — not a live offer.</p>
-          <button className="bg-brand-teal text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-[#0f3d3a] transition-colors">
-            Explore Premium
-          </button>
-        </div>
-        
-        <div className="bg-red-500/10 dark:bg-red-500/20 border border-red-500/20 rounded-2xl p-8">
-          <p className="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest mb-3">Pass the understanding on</p>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Your notes could help someone.</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-sm">Share materials you own or have permission to share. Every submission is reviewed.</p>
-          <button className="bg-transparent border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-white/50 dark:hover:bg-white/5 transition-colors">
-            Become a Contributor
-          </button>
-        </div>
+            <button
+              className="text-[#202D40]"
+              aria-label="Notifications"
+            >
+              <Bell size={20} />
+            </button>
+          </div>
+        </header>
+
+        <main className="px-5 py-8 md:px-10 md:py-10">
+          <Outlet />
+        </main>
       </div>
     </div>
   );
