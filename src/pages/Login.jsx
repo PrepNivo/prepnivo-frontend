@@ -1,4 +1,5 @@
 import { ArrowLeft } from 'lucide-react';
+import {Link } from 'react-router-dom'
 
 export default function Login() {
   return (
@@ -43,10 +44,10 @@ export default function Login() {
       {/* Right Panel - Login Form */}
       <div className="w-full md:w-7/12 p-8 md:p-12 lg:p-24 flex flex-col justify-center items-center">
         <div className="max-w-md w-full">
-          <a href="#" className="inline-flex items-center text-sm text-gray-500 mb-12 hover:text-brand-teal transition-colors">
+          <Link to="/" className="inline-flex items-center text-sm text-gray-500 mb-12 hover:text-brand-teal transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Prepnivo
-          </a>
+          </Link>
 
           <p className="text-brand-teal font-bold text-[10px] uppercase tracking-widest mb-3">
             Good to see you again
@@ -97,10 +98,11 @@ export default function Login() {
                 </label>
                 <a href="#" className="text-gray-500 hover:text-brand-teal transition-colors">Forgot password?</a>
               </div>
-
-              <button className="w-full bg-brand-teal text-white rounded-xl py-3.5 font-medium hover:bg-[#0f3d3a] transition-colors mt-2">
+              <Link
+                className="mt-2 flex w-full items-center justify-center rounded-xl bg-brand-teal px-4 py-3 text-center font-medium text-white transition-colors hover:bg-[#0f3d3a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+                to="/dashboard">
                 Log In
-              </button>
+              </Link>
             </div>
 
             <div className="text-center pt-2">
