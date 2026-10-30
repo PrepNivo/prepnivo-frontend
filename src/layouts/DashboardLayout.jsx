@@ -32,7 +32,7 @@ export default function DashboardLayout() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 z-40 flex h-screen w-[250px] flex-col border-r border-[#DFE7E7] bg-white px-5 py-7 transition-transform lg:translate-x-0 ${
+        className={`fixed left-0 top-0 z-40 flex h-screen overflow-y-auto thin-scrollbar w-[250px] flex-col border-r border-[#DFE7E7] bg-white px-5 py-7 transition-transform lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -85,14 +85,17 @@ export default function DashboardLayout() {
               </NavLink>
             )
           )}
+
         </nav>
 
         {/* Sidebar bottom */}
-        <div className="mt-auto pt-6">
+        <div className=" pt-6">
           <div className="rounded-2xl bg-[#E7F3F1] p-4">
-            <h3 className="text-sm font-bold">
-              Make room for more.
-            </h3>
+            <div className="mt-2 text-xs leading-relaxed text-[#697F98]">
+            <span>Adaeze Okafor</span>
+            <span>  .  </span>
+            <span>Free</span>
+          </div>
 
             <NavLink
               to="/dashboard/premium"
@@ -100,11 +103,6 @@ export default function DashboardLayout() {
             >
               Explore Premium
             </NavLink>
-          </div>
-
-          <div className="mt-8 text-xs leading-relaxed text-[#697F98]">
-            <p>Adaeze Okafor</p>
-            <p>Free account</p>
           </div>
         </div>
       </aside>

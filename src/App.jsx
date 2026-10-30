@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage.jsx'
 import StudyArea from './pages/StudyArea.jsx'
 import Contributor from './pages/Contributor.jsx'
 import Profilepage from './pages/Profile.jsx'
+import SettingsPage from './pages/Settings.jsx'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path ="study-area" element={<StudyArea/>}/>
           <Route path ="contribute" element={<Contributor/>}/>
           <Route path ="profile" element={<Profilepage/>}/>
+          <Route path ="settings" element ={<SettingsPage/>}/>
 
 
         </Route>
