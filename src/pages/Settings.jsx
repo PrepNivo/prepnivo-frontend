@@ -96,15 +96,8 @@ export default function SettingsPage(){
                   key={option.id}
                   className="group cursor-pointer"
                 >
-                  <input
-                    type="radio"
-                    name="theme"
-                    value={option.id}
-                    checked={selected}
-                    onChange={() => setTheme(option.id)}
-                    className="sr-only"
-                  />
-
+                  <input type="radio" name="theme" value={option.id} checked={selected} 
+                  onChange={() => setTheme(option.id)} className="sr-only"/>
                   {/* Theme Preview */}
                   <div
                     className={`h-[106px] rounded-xl border-2 p-3 transition ${
