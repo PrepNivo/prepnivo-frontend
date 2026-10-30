@@ -1,4 +1,4 @@
-import { ArrowUpRight, Lock } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function ResourceCard({
   courseCode,
@@ -11,35 +11,43 @@ export default function ResourceCard({
   isPremium = false,
   previewText = 'Preview only'
 }) {
-  // Dynamically switch styling based on whether the resource is Free or Premium
-  const themeClasses = isPremium
-    ? "bg-[#FDF2F4] dark:bg-[#34242B] hover:border-red-500/30"
-    : "bg-[#EBF3F2] dark:bg-[#133A38] hover:border-brand-teal/30";
-
-  const textHighlight = isPremium 
-    ? "text-red-600 dark:text-red-400" 
-    : "text-brand-teal dark:text-brand-lightTeal";
-
   return (
-    <div className={`rounded-2xl p-6 flex flex-col border border-transparent cursor-pointer transition-colors ${themeClasses}`}>
-      <div className="flex justify-between items-start mb-12">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{courseCode}</h2>
-        <span className={`text-xs font-bold flex items-center gap-1 ${textHighlight}`}>
-          {format} <ArrowUpRight className="w-3 h-3" />
+    <div className=" group flex flex-col overflow-hidden rounded-[20px] border border-[#DCE7E5] 
+    bg-white cursor-pointer transition-all duration-200 hover:shadow-md">
+      {/* Colored course header */}
+      <div className={` flex items-center justify-between min-h-[108px] px-4 py-6 sm:px-[17px]
+        ${isPremium ? 'bg-[#FFF0EB]' : 'bg-[#E8F3F1]'}
+      `}>
+        <h2 className=" text-[28px] font-bold tracking-tight text-[#202C3D]">
+          {courseCode}
+        </h2>
+
+        <span className=" flex items-center gap-1 text-[10px] font-bold text-[#16788A]">
+          {format}
+          <ArrowUpRight size={13} strokeWidth={2.5} />
         </span>
       </div>
-      
-      <div className="mt-auto">
-        <p className={`text-[10px] font-bold uppercase tracking-widest mb-2 flex items-center gap-1 ${textHighlight}`}>
-          {isPremium && <Lock className="w-3 h-3" />} {type} · {isPremium ? 'Premium' : 'Free'}
+
+      {/* Resource information */}
+      <div className=" flex flex-1 flex-col min-h-[117px] p- ">
+
+        <p className=" mb-2 flex items-center gap-1 text-[9px] font-bold uppercase tracking-wide text-[#16788A]">
+          {type} · {isPremium ? 'Premium' : 'Free'}
         </p>
-        <h4 className="font-bold text-gray-900 dark:text-white mb-1">{title}</h4>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+
+        <h4 className=" mb-1 text-[14px] font-bold leading-5 text-[#202C3D]">
+          {title}
+        </h4>
+
+        <p className=" mb-1 text-[11px] text-[#71839F]">
           {courseCode} · {level} · {format}
         </p>
-        <p className="text-xs text-gray-500">
-          {year} · {pages} {isPremium && `· ${previewText}`}
+
+        <p className=" text-[11px] text-[#71839F]">
+          {year} · {pages} pages
+          {isPremium && ` · ${previewText}`}
         </p>
+
       </div>
     </div>
   );
