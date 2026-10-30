@@ -1,88 +1,210 @@
-import { SlidersHorizontal, Search, Lock } from 'lucide-react';
-import ResourceCard from '../components/ResourceCard';
+import { SlidersHorizontal, Search, Lock, ChevronDown, ArrowDown} from "lucide-react";
+import ResourceCard from "../components/ResourceCard";
 
 export default function Library() {
-  // Mock data based on the UI design for the 6 resource cards
+  // Existing mock data
   const resources = [
-    { id: 1, course: 'CSC 201', title: 'Data Structures, made clear', type: 'Lecture Notes', level: '200 level', year: '2024/2025', pages: '42 pages', isPremium: false },
-    { id: 2, course: 'CSC 201', title: 'CSC 201 past questions & solutions', type: 'Past Questions', level: '200 level', year: '2023/2024', pages: '28 pages', isPremium: true, previewText: 'Preview only' },
-    { id: 3, course: 'CSC 203', title: 'Object-Oriented Programming', type: 'Lecture Notes', level: '200 level', year: '2024/2025', pages: '36 pages', isPremium: false },
-    { id: 4, course: 'MAT 201', title: 'Linear Algebra practice set', type: 'Practice Problems', level: '200 level', year: '2024/2025', pages: '18 pages', isPremium: false },
-    { id: 5, course: 'CSC 205', title: 'Digital Systems revision guide', type: 'Study Guides', level: '200 level', year: '2024/2025', pages: '24 pages', isPremium: true, previewText: 'Preview only' },
-    { id: 6, course: 'STA 201', title: 'Probability & Statistics essentials', type: 'Lecture Notes', level: '200 level', year: '2023/2024', pages: '32 pages', isPremium: false },
+    {
+      id: 1,
+      course: "CSC 201",
+      title: "Data Structures, made clear",
+      type: "Lecture Notes",
+      level: "200 level",
+      year: "2024/2025",
+      pages: "42 pages",
+      isPremium: false,
+    },
+    {
+      id: 2,
+      course: "CSC 201",
+      title: "CSC 201 past questions & solutions",
+      type: "Past Questions",
+      level: "200 level",
+      year: "2023/2024",
+      pages: "28 pages",
+      isPremium: true,
+      previewText: "Preview only",
+    },
+    {
+      id: 3,
+      course: "CSC 203",
+      title: "Object-Oriented Programming",
+      type: "Lecture Notes",
+      level: "200 level",
+      year: "2024/2025",
+      pages: "36 pages",
+      isPremium: false,
+    },
+    {
+      id: 4,
+      course: "MAT 201",
+      title: "Linear Algebra practice set",
+      type: "Practice Problems",
+      level: "200 level",
+      year: "2024/2025",
+      pages: "18 pages",
+      isPremium: false,
+    },
+    {
+      id: 5,
+      course: "CSC 205",
+      title: "Digital Systems revision guide",
+      type: "Study Guides",
+      level: "200 level",
+      year: "2024/2025",
+      pages: "24 pages",
+      isPremium: true,
+      previewText: "Preview only",
+    },
+    {
+      id: 6,
+      course: "STA 201",
+      title: "Probability & Statistics essentials",
+      type: "Lecture Notes",
+      level: "200 level",
+      year: "2023/2024",
+      pages: "32 pages",
+      isPremium: false,
+    },
   ];
 
   const filters = [
-    { label: 'Institution', value: 'University of Lagos' },
-    { label: 'Faculty', value: 'Science' },
-    { label: 'Department', value: 'Computer Science' },
-    { label: 'Academic level', value: '200 level' },
-    { label: 'Course', value: 'All courses' },
-    { label: 'Resource type', value: 'All types' },
-    { label: 'Academic session', value: 'All sessions' },
-    { label: 'Access tier', value: 'Free & Premium' },
+    { label: "Institution", value: "University of Lagos" },
+    { label: "Faculty", value: "Science" },
+    { label: "Department", value: "Computer Science" },
+    { label: "Academic level", value: "200 level" },
+    { label: "Course", value: "All courses" },
+    { label: "Resource type", value: "All types" },
+    { label: "Academic session", value: "All sessions" },
+    { label: "Access tier", value: "Free & Premium" },
   ];
 
   return (
-    <div className="max-w-6xl mx-auto pb-12">
-      <p className="text-brand-teal font-bold text-[10px] uppercase tracking-widest mb-2">The right material, within reach</p>
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Your course. Your library.</h1>
-      <p className="text-gray-600 dark:text-gray-400 text-sm mb-8">Find the notes, past questions and practice that move you forward.</p>
-      
+    <div className="mx-auto max-w-[1350px] pb-12">
+
+      {/* Page heading */}
+      <section className="mb-8">
+        <p className="mb-3 text-[11px] font-bold uppercase tracking-wide text-[#206F7E]">
+          The right material, within reach
+        </p>
+
+        <h1 className="mb-2 text-[30px] font-bold leading-tight tracking-tight text-[#202D40] md:text-[36px]">
+          Your course. Your library.
+        </h1>
+
+        <p className="text-sm text-[#697F98]">
+          Find the notes, past questions and practice that move you forward.
+        </p>
+      </section>
+
       {/* Search Bar */}
-      <div className="relative mb-10">
-        <input 
-          type="text" 
-          placeholder="Search by resource title, course code or topic..." 
-          className="w-full bg-white dark:bg-[#111827] border border-gray-200 dark:border-gray-800 rounded-xl px-12 py-4 text-sm focus:outline-none focus:border-brand-teal transition-colors"
+      <div className="relative mb-7">
+        <Search
+          size={21}
+          className="absolute left-5 top-1/2 -translate-y-1/2 text-[#697F98]"
         />
-        <Search className="w-5 h-5 absolute left-4 top-4 text-gray-400" />
+
+        <input
+          type="search"
+          placeholder="Search by resource title, course code or topic..."
+          className="h-[55px] w-full rounded-xl border border-[#DCE6E6] bg-white pl-14 pr-5 text-sm text-[#202D40] outline-none transition placeholder:text-[#697F98] focus:border-[#206F7E] focus:ring-2 focus:ring-[#206F7E]/10"
+        />
       </div>
 
-      <div className="flex flex-col md:flex-row gap-8">
-        
-        {/* Left Sidebar - Filters */}
-        <div className="w-full md:w-64 shrink-0">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <SlidersHorizontal className="w-4 h-4 text-brand-teal" /> Filters
-            </h3>
-            <button className="text-xs text-brand-teal hover:underline font-medium">Reset all</button>
-          </div>
-          
-          <div className="bg-white dark:bg-[#111827] border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden flex flex-col mb-4">
-            {filters.map((filter, index) => (
-              <div key={filter.label} className={`p-4 ${index !== filters.length - 1 ? 'border-b border-gray-200 dark:border-gray-800' : ''} cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors`}>
-                <p className="text-[10px] text-gray-500 mb-1">{filter.label}</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-300">{filter.value}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-gray-500 px-2">Filters follow your profile. Explore another academic home any time.</p>
-        </div>
+      {/* Main library layout */}
+      <div className="flex flex-col items-start gap-6 lg:flex-row">
 
-        {/* Right Content - Resource Grid */}
-        <div className="flex-1">
-          
-          {/* Active Tags & Sort */}
-          <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
-            <div>
-              <p className="text-sm font-bold text-gray-900 dark:text-white mb-3">6 resources for your studies</p>
-              <div className="flex flex-wrap gap-2 text-xs font-medium">
-                <span className="bg-brand-teal/10 text-brand-teal dark:text-brand-lightTeal px-3 py-1.5 rounded-lg flex items-center gap-1">UNILAG <span className="opacity-50 hover:opacity-100 cursor-pointer">×</span></span>
-                <span className="bg-brand-teal/10 text-brand-teal dark:text-brand-lightTeal px-3 py-1.5 rounded-lg flex items-center gap-1">200 level <span className="opacity-50 hover:opacity-100 cursor-pointer">×</span></span>
-                <span className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-3 py-1.5 rounded-lg">Science / Computer Science</span>
-              </div>
-            </div>
-            <button className="text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors flex items-center gap-1">
-              Sort: Recently added ↓
+        {/* Filters sidebar */}
+        <aside className="w-full shrink-0 rounded-[22px] border border-[#DCE6E6] bg-white p-5 lg:w-[255px]">
+
+          <div className="mb-5 flex items-center justify-between gap-3">
+            <h2 className="flex items-center gap-2 text-sm font-bold text-[#202D40]">
+              <SlidersHorizontal
+                size={18}
+                className="text-[#206F7E]"
+              />
+              Filters
+            </h2>
+
+            <button
+              type="button"
+              className="text-xs font-medium text-[#206F7E] hover:underline"
+            >
+              Reset all
             </button>
           </div>
 
-          {/* Grid of Resources */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+          {/* Individual filter boxes */}
+          <div className="flex flex-col gap-3">
+            {filters.map((filter) => (
+              <div
+                key={filter.label}
+                className="rounded-xl border border-[#DCE6E6] bg-white px-4 py-3.5"
+              >
+                <div className="mb-1 flex items-center gap-1">
+                  <span className="text-[10px] font-semibold text-[#697F98]">
+                    {filter.label}
+                  </span>
+
+                  <ChevronDown
+                    size={11}
+                    className="text-[#697F98]"
+                  />
+                </div>
+
+                <p className="text-[13px] font-medium text-[#202D40]">
+                  {filter.value}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-5 text-[11px] leading-relaxed text-[#697F98]">
+            Filters follow your profile. Explore another academic home any
+            time.
+          </p>
+        </aside>
+
+        {/* Resource content */}
+        <section className="min-w-0 flex-1">
+
+          {/* Resource count and sort */}
+          <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
+
+            <div>
+              <h2 className="mb-4 text-sm font-bold text-[#202D40]">
+                {resources.length} resources for your studies
+              </h2>
+
+              {/* Active filter tags */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-[#E7F3F1] px-3 py-1.5 text-[10px] font-bold text-[#206F7E]">
+                  UNILAG ×
+                </span>
+
+                <span className="rounded-full bg-[#E7F3F1] px-3 py-1.5 text-[10px] font-bold text-[#206F7E]">
+                  200 level ×
+                </span>
+
+                <span className="text-[11px] text-[#697F98]">
+                  Science / Computer Science
+                </span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              className="flex items-center gap-1 text-xs text-[#697F98] transition hover:text-[#206F7E]"
+            >
+              Sort: Recently added
+              <ArrowDown size={13} />
+            </button>
+          </div>
+
+          {/* Resource grid */}
+          <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {resources.map((res) => (
-              <ResourceCard 
+              <ResourceCard
                 key={res.id}
                 courseCode={res.course}
                 title={res.title}
@@ -97,21 +219,42 @@ export default function Library() {
           </div>
 
           {/* Pagination */}
-          <div className="flex justify-center items-center gap-4 mb-10">
-            <button className="px-4 py-2 text-sm font-medium text-gray-500 bg-white dark:bg-[#111827] border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Previous</button>
-            <span className="text-xs font-bold bg-brand-teal/10 text-brand-teal dark:text-brand-lightTeal px-3 py-1.5 rounded">1 / 1</span>
-            <button className="px-4 py-2 text-sm font-medium text-gray-500 bg-white dark:bg-[#111827] border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Next</button>
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              disabled
+              className="rounded-xl border border-[#DCE6E6] bg-white px-5 py-3 text-sm font-semibold text-[#202D40] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              Previous
+            </button>
+
+            <span className="rounded-full bg-[#E7F3F1] px-3 py-1.5 text-xs font-bold text-[#206F7E]">
+              1 / 1
+            </span>
+
+            <button
+              type="button"
+              disabled
+              className="rounded-xl border border-[#DCE6E6] bg-white px-5 py-3 text-sm font-semibold text-[#202D40] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              Next
+            </button>
           </div>
 
-          {/* Info Banner */}
-          <div className="bg-[#133A38]/30 dark:bg-brand-teal/10 border border-brand-teal/20 rounded-xl p-4 flex items-start gap-3">
-            <Lock className="w-4 h-4 text-brand-teal dark:text-brand-lightTeal shrink-0 mt-0.5" />
-            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-              Free resources include reading and download access. Premium resources include a 3-page preview; a Premium plan is required for full reading and downloads.
+          {/* Access information banner */}
+          <div className="flex items-start gap-3 rounded-[15px] bg-[#E7F3F1] p-5">
+            <Lock
+              size={18}
+              className="mt-0.5 shrink-0 text-[#206F7E]"
+            />
+
+            <p className="text-xs leading-relaxed text-[#697F98]">
+              Free resources include reading and download access. Premium
+              resources include a 3-page preview; a Premium plan is required
+              for full reading and downloads.
             </p>
           </div>
-
-        </div>
+        </section>
       </div>
     </div>
   );

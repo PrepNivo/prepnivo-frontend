@@ -7,11 +7,11 @@ const links = [
   { name: "Dashboard", path: "/dashboard" },
   { name: "Library", path: "/dashboard/library" },
   { name: "Study Area", path: "/dashboard/study-area" },
+  { name: "Become a Contributor", path: "/dashboard/contribute" },
+  { name: "Profile", path: "/dashboard/profile" },
   { name: "Summaries · Coming Soon", disabled: true },
   { name: "Mock Exam · Coming Soon", disabled: true },
   { name: "Marketplace · Coming Soon", disabled: true },
-  { name: "Become a Contributor", path: "/dashboard/contribute" },
-  { name: "Profile", path: "/dashboard/profile" },
   { name: "Settings", path: "/dashboard/settings" },
   { name: "Log Out", path: "/logout" },
 ];
@@ -125,14 +125,15 @@ export default function DashboardLayout() {
 
             <p className="text-xs text-[#697F98]">
               Workspace
-              <span className="mx-2">/</span>
-              <span className="text-[#202D40]">Dashboard</span>
+              {/* <span className="mx-2">/</span> */}
+              {/* <span className="text-[#202D40]"></span> */}
             </p>
           </div>
 
           <div className="flex items-center gap-5">
             <span className="rounded-full bg-[#E7F3F1] px-3 py-1 text-[10px] font-bold text-[#206F7E]">
               UNILAG · 200 LEVEL
+              {/* Profile */}
             </span>
 
             <button
