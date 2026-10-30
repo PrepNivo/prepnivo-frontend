@@ -123,8 +123,8 @@ export default function DashboardLayout() {
 
             <p className="text-xs text-[#697F98]">
               Workspace
-              {/* <span className="mx-2">/</span> */}
-              {/* <span className="text-[#202D40]"></span> */}
+              <span className="mx-2">/</span>
+              <span className="text-[#202D40]"></span>
             </p>
           </div>
 

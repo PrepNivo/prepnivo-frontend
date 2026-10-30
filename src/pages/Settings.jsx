@@ -60,7 +60,6 @@ export default function SettingsPage(){
   };
 
   return (
-    <main className="min-h-screen bg-[#f2f5f4] px-5 py-8 md:px-8 lg:px-8">
       <div className="mx-auto max-w-[1200px]">
 
         {/* Page Heading */}
@@ -289,7 +288,6 @@ export default function SettingsPage(){
         </section>
 
       </div>
-    </main>
   );
 };
 

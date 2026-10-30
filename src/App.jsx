@@ -8,6 +8,7 @@ import StudyArea from './pages/StudyArea.jsx'
 import Contributor from './pages/Contributor.jsx'
 import Profilepage from './pages/Profile.jsx'
 import SettingsPage from './pages/Settings.jsx'
+import PremiumPage from './pages/Premium.jsx'
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           <Route path ="contribute" element={<Contributor/>}/>
           <Route path ="profile" element={<Profilepage/>}/>
           <Route path ="settings" element ={<SettingsPage/>}/>
+          <Route path ="premium" element ={<PremiumPage/>}/>
+
+        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
 
 
         </Route>
