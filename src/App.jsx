@@ -6,6 +6,7 @@ import Library from './pages/Library.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import StudyArea from './pages/StudyArea.jsx'
 import Contributor from './pages/Contributor.jsx'
+import Profilepage from './pages/Profile.jsx'
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="library" element={<Library />} />
           <Route path ="study-area" element={<StudyArea/>}/>
           <Route path ="contribute" element={<Contributor/>}/>
+          <Route path ="profile" element={<Profilepage/>}/>
+
 
         </Route>
       </Routes>
